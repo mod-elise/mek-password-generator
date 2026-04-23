@@ -1,0 +1,79 @@
+FUNCTION generate_pools ():
+    lower_case  = "abcdefghijklmnopqrstuvwxyz"
+    upper_case  = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    digits      = "0123456789"
+    symbols     = "!@#$%^&*()_+-=[]{}|;:,.<>?"
+    ambiguous   = ["l", "1", "|", "0", "O" ]
+    if exclude_ambiguous:
+        remove ambiguous FROM lower_case
+        remove ambigous FROM digits
+
+    # alternative just hardcode different pools if exclude_ambiguous is true - easier now, but less flexible going forwards
+    return lower_case, upper_case, digits, symbols 
+END
+
+FUNCTION calc_strength(options):
+    entropy = password_length * log2(length of selected_pools)
+    if entropy < 40:
+        RETURN "Weak"
+    elseif entropy <=60:
+        RETURN "Medium"
+    else
+        RETURN "Strong"
+END
+
+FUNCTION generate_password(options):
+    lower_case, upper_case, digits, symbols = generate_pools (exclude_ambiguous)
+
+    selected_pools = [lower_case]
+    
+
+    if use_upper:
+        ADD upper_case to selected_pools
+
+    if use_digits:
+        ADD digits to selectected selected_pools
+
+    if use_symbols:
+        ADD symbols to selected_pools
+
+    # Put at least char from each selected pool into the password
+    for each pool in selected_pools:
+        ADD random_char from pool to password_chars
+
+    # Add the rest of the characters
+    combined_pool is JOIN all selected_pools
+    remaining_length = target_length - length(password_chars)
+    for the reamaining_length:
+        ADD random_char from combine_pool to password_chars
+
+    SHUFFLE password_chars
+    return password_chars
+end
+
+FUNCTION validate_inputs(options):
+    if target_length < selected_pools_count:
+        ERROR
+END
+    
+FUNCTION on_copy_clicked():
+    password = GET value from outputField
+    if password not empty:
+        ADD password to clipboard
+END
+
+--------------------------------------------
+START
+WAIT for user
+WHEN "Generate" button clicked
+    READ inputs
+    VALIDATE inputs
+    GENERATE password
+    DISPLAY password
+
+WHEN "Copy" button clicked
+    COPY password to clipboard
+
+REPEAT UNTIL EXIT
+END
+---------------------------------------------------
