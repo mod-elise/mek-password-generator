@@ -9,6 +9,6 @@ def generate_password():
     return password
 
 
-def another_function( ):
-  x=1+2
+def another_function(   ):
+  x=1+2 
   return x
