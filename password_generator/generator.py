@@ -11,7 +11,7 @@ def secureShuffle(inputList):
 
 
 def generate_pools():
-    #separate function so that custom pools might be possible - or an option to remove ambigous characters like 'l' and '1' in the future
+    # separate function so that custom pools might be possible - or an option to remove ambigous characters like 'l' and '1' in the future
     lower_case = "abcdefghijklmnopqrstuvwxyz"
     upper_case = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     digits = "0123456789"
