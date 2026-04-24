@@ -10,15 +10,9 @@ def pressGenerate(pwlength, uppercase, digits, symbols):
     entry.delete(0, tk.END)
     password, strength = generate_password(pwlength, uppercase, digits, symbols)
     entry.insert(tk.END, password)
-    strength_colors = {
-        "Weak": "red",
-        "Medium": "orange",
-        "Strong": "green"
-    }
+    strength_colors = {"Weak": "red", "Medium": "orange", "Strong": "green"}
     frame.config(bg=strength_colors[strength])
     strength_label.config(text=strength, bg=strength_colors[strength])
-
-
 
 
 def pressCopy():
