@@ -16,6 +16,9 @@ def pressGenerate(pwlength, uppercase, digits, symbols):
         "Strong": "green"
     }
     frame.config(bg=strength_colors[strength])
+    strength_label.config(text=strength, bg=strength_colors[strength])
+
+
 
 
 def pressCopy():
@@ -46,7 +49,9 @@ slider = tk.Scale(
 
 frame = tk.Frame(root, bg="grey", width=50, height=50, bd=3, relief=tk.RIDGE)
 frame.grid(row=sliderrow, column=4)
-
+frame.pack_propagate(False)
+strength_label = tk.Label(frame, text="", bg="grey")
+strength_label.pack()
 
 upCheck = tk.Checkbutton(root, text="uppercase", variable=hasUppercase).grid(
     row=checkboxrow, column=0
