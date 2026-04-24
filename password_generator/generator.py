@@ -1,4 +1,15 @@
 import secrets
+import math
+
+
+def calculateStrength(pw_length, pool_length):
+    entropy = pw_length * math.log2(pool_length)
+    if entropy < 40:
+        return "Weak"
+    elif entropy <= 60:
+        return "Medium"
+    else:
+        return "Strong"
 
 
 def secureShuffle(inputList):
@@ -45,4 +56,5 @@ def generate_password(pw_length, use_upper, use_digits, use_symbols):
         password_chars.append(secrets.choice(combined_pool))
 
     securePassword = "".join(secureShuffle(password_chars))
-    return securePassword
+    password_strength = calculateStrength(pw_length, len("".join(combined_pool)))
+    return securePassword, password_strength
