@@ -10,7 +10,6 @@ def pressGenerate(pwlength, uppercase, digits, symbols):
     entry.delete(0, tk.END)
     password, strength = generate_password(pwlength, uppercase, digits, symbols)
     entry.insert(tk.END, password)
-    print("Strength is:", strength)
     if strength == "Weak":
         frame.config(bg="red")
     elif strength == "Medium":
