@@ -1,5 +1,6 @@
 from password_generator.generator import generate_password
 
+
 def test_password_length():
     password = generate_password(12, True, True, True)
     assert len(password) == 12
