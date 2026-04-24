@@ -11,11 +11,11 @@ def secureShuffle(inputList):
 
 
 def generate_pools():
+    #separate function so that custom pools might be possible - or an option to remove ambigous characters like 'l' and '1' in the future
     lower_case = "abcdefghijklmnopqrstuvwxyz"
     upper_case = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     digits = "0123456789"
     symbols = "!@#$%^&*()_+-=[]{}|;:,.<>?"
-    #   ambiguous   = ["l", "1", "|", "0", "O" ]
     return lower_case, upper_case, digits, symbols
 
 
@@ -34,7 +34,7 @@ def generate_password(pw_length, use_upper, use_digits, use_symbols):
     if use_symbols:
         selected_pools.append(symbols)
 
-    # Put at least char from each selected pool into the password
+    # Put at least 1 char from each selected pool into the password
     for pool in selected_pools:
         password_chars.append(secrets.choice(pool))
         combined_pool = combined_pool + pool
@@ -44,7 +44,5 @@ def generate_password(pw_length, use_upper, use_digits, use_symbols):
     for i in range(remaining_length):
         password_chars.append(secrets.choice(combined_pool))
 
-    print(password_chars)
     securePassword = "".join(secureShuffle(password_chars))
-    print(securePassword)
     return securePassword

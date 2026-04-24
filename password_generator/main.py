@@ -1,9 +1,6 @@
 import tkinter as tk
 from password_generator.generator import generate_password
 
-
-## USER  INTERFACE ##
-
 passwordrow = 0
 sliderrow = 1
 checkboxrow = 2
