@@ -1,5 +1,6 @@
 import secrets
 
+
 def secureShuffle(inputList):
     shuffledList = []
     while len(inputList) > 0:

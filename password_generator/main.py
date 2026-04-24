@@ -2,7 +2,6 @@ import tkinter as tk
 from password_generator.generator import generate_password
 
 
-
 ## USER  INTERFACE ##
 
 passwordrow = 0
