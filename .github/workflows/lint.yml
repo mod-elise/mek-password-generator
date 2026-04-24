@@ -21,6 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install ruff
+          pip install pytest
 
       - name: Run Ruff (lint)
         run: |
