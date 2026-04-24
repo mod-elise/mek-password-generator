@@ -8,7 +8,15 @@ checkboxrow = 2
 
 def pressGenerate(pwlength, uppercase, digits, symbols):
     entry.delete(0, tk.END)
-    entry.insert(tk.END, generate_password(pwlength, uppercase, digits, symbols))
+    password, strength = generate_password(pwlength, uppercase, digits, symbols)
+    entry.insert(tk.END, password)
+    print("Strength is:", strength)
+    if strength == "Weak":
+        frame.config(bg="red")
+    elif strength == "Medium":
+        frame.config(bg="orange")
+    elif strength == "Strong":
+        frame.config(bg="green")
 
 
 def pressCopy():
@@ -36,6 +44,9 @@ slider = tk.Scale(
     length=400,
     orient=tk.HORIZONTAL,
 ).grid(row=sliderrow, column=0, columnspan=3)
+
+frame = tk.Frame(root, bg="grey", width=50, height=50, bd=3, relief=tk.RIDGE)
+frame.grid(row=sliderrow, column=4)
 
 
 upCheck = tk.Checkbutton(root, text="uppercase", variable=hasUppercase).grid(
